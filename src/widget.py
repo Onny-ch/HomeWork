@@ -1,6 +1,14 @@
-def mask_account_card():
+from masks import get_mask_account, get_mask_card_number
+
+
+def mask_account_card(account_data: str) -> str:
     """Функция маскировки карты или счета"""
-    pass
+    if account_data[:4].lower() == "счет":
+        masks_account = get_mask_account(account_data[5:])
+        return f"{account_data[:4]} {masks_account}"
+    else:
+        masks_card = get_mask_card_number(account_data[-16:])
+        return f"{account_data[:-17]} {masks_card}"
 
 
 def get_data(data: str) -> str:
@@ -10,3 +18,5 @@ def get_data(data: str) -> str:
 
 
 print(get_data("2018-07-11T02:26:18.671407"))
+print(mask_account_card("Счет 64686473678894779589"))
+print(mask_account_card("Visa Classic 6831982476737658"))
