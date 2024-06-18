@@ -1,4 +1,4 @@
-from masks import get_mask_account, get_mask_card_number
+from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(account_data: str) -> str:
@@ -15,8 +15,3 @@ def get_data(data: str) -> str:
     """Функция получения даты"""
     year, month, day = data[0:4], data[5:7], data[8:10]
     return f"{day}.{month}.{year}"
-
-
-print(get_data("2018-07-11T02:26:18.671407"))
-print(mask_account_card("Счет 64686473678894779589"))
-print(mask_account_card("Visa Classic 6831982476737658"))
