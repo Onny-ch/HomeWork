@@ -1,8 +1,10 @@
 def filter_by_state(my_list: list, state_value: str = 'EXECUTED') -> list:
+    """Фильтрует список словарей по ключу 'state'"""
     return [elem for elem in my_list if elem["state"] == state_value]
 
 
 def sort_by_date(my_list: list, sort_order: bool = True) -> list:
+    """Сортирует список словарей по ключу 'date'"""
     return sorted(my_list, key=lambda x: x['date'], reverse=sort_order)
 
 
