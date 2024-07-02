@@ -3,7 +3,7 @@ import pytest
 from src.widget import get_data, mask_account_card
 
 
-@pytest.mark.parametrize("account_data, expected", [
+@pytest.mark.parametrize("account_data, expected_result", [
     ("Maestro 1596837868705199", "Maestro 1596 83** **** 5199"),
     ("Счет 64686473678894779589", "Счет **9589"),
     ("MasterCard 7158300734726758", "MasterCard 7158 30** **** 6758"),
@@ -13,15 +13,15 @@ from src.widget import get_data, mask_account_card
     ("Visa Gold 5999414228426353", "Visa Gold 5999 41** **** 6353"),
     ("Счет 73654108430135874305", "Счет **4305")
 ])
-def test_mask_account_card(account_data, expected):
-    assert mask_account_card(account_data) == expected
+def test_mask_account_card(account_data, expected_result):
+    assert mask_account_card(account_data) == expected_result
 
 
-@pytest.mark.parametrize("transaction_data, expected", [
-    ("2018-07-11T02:26:18.671407", "11.07.2018"),
-    ("2018-06-30T02:08:58.425572", "30.06.2018"),
-    ("2018-09-12T21:27:25.241689", "12.09.2018"),
-    ("2018-10-14T08:21:33.419441", "14.10.2018")
+@pytest.mark.parametrize("transaction_data, expected_result", [
+    ("transaction_data_first", "11.07.2018"),
+    ("transaction_data_second", "30.06.2018"),
+    ("transaction_data_third", "12.09.2018"),
 ])
-def test_get_data(transaction_data, expected):
-    assert get_data(transaction_data) == expected
+def test_get_data(transaction_data, expected_result, request):
+    requested_transaction_data = request.getfixturevalue(transaction_data)
+    assert get_data(requested_transaction_data) == expected_result
