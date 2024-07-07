@@ -1,5 +1,6 @@
 def filter_by_currency(my_list, my_code="USD"):
-    return (dict_elem for dict_elem in my_list if dict_elem["operationAmount"]["currency"]["code"] == my_code)
+    for x in (dict_elem for dict_elem in my_list if dict_elem["operationAmount"]["currency"]["code"] == my_code):
+        yield x
 
 
 def transaction_descriptions(my_list):
