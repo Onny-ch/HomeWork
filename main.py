@@ -1,7 +1,7 @@
 from src.masks import get_mask_account, get_mask_card_number
 from src.processing import filter_by_state, sort_by_date
 from src.widget import get_data, mask_account_card
-from src.generators import filter_by_currency, transaction_descriptions
+from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
 
 test_list_of_dict = [
         {'id': '41428829', 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'},
@@ -93,8 +93,11 @@ transactions = (
 
 if __name__ == '__main__':
     print(get_mask_card_number("7000792289606361"))
+
     print(get_mask_account("73654108430135874305"))
+
     print(get_data("2018-07-11T02:26:18.671407"))
+
     print(mask_account_card("Maestro 1596837868705199".strip()))
     print(mask_account_card("Счет 64686473678894779589".strip()))
     print(mask_account_card("MasterCard 7158300734726758".strip()))
@@ -103,8 +106,10 @@ if __name__ == '__main__':
     print(mask_account_card("Visa Platinum 8990922113665229".strip()))
     print(mask_account_card("Visa Gold 5999414228426353".strip()))
     print(mask_account_card("Счет 73654108430135874305".strip()))
+
     print(filter_by_state(test_list_of_dict, "EXECUTED"))
     print(filter_by_state(test_list_of_dict, "CANCELED"))
+
     print(sort_by_date(test_list_of_dict, False))
     print(sort_by_date(test_list_of_dict, True))
 
@@ -115,3 +120,6 @@ if __name__ == '__main__':
     descriptions = transaction_descriptions(transactions)
     for _ in range(5):
         print(next(descriptions))
+
+    for card_number in card_number_generator(1, 5):
+        print(card_number)
