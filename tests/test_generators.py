@@ -1,3 +1,5 @@
+import pytest
+
 from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 
@@ -14,7 +16,8 @@ def test_filter_by_currency(account_transaction):
         'id': 142264268, 'state': 'EXECUTED', 'date': '2019-04-04T23:20:05.206878',
         'operationAmount': {'amount': '79114.93', 'currency': {'name': 'USD', 'code': 'USD'}},
         'description': 'Перевод со счета на счет', 'from': 'Счет 19708645243227258542',
-        'to': 'Счет 75651667383060284188'}
+        'to': 'Счет 75651667383060284188'
+    }
     assert next(usd_transactions) == {
         'id': 895315941, 'state': 'EXECUTED', 'date': '2018-08-19T04:27:37.904916',
         'operationAmount': {'amount': '56883.54', 'currency': {'name': 'USD', 'code': 'USD'}},
@@ -33,11 +36,15 @@ def test_transaction_descriptions(account_transaction):
     assert next(descriptions) == "Перевод организации"
 
 
-def test_card_number_generator():
-    card_number = card_number_generator(111872, 111876)
+@pytest.mark.parametrize('start_value, stop_value, expected', [
+    (1, 4, 'card_numbers_1'),
+    (111872, 111875, 'card_numbers_2')
+])
+def test_card_number_generator(start_value, stop_value, expected, request):
+    card_number = card_number_generator(start_value, stop_value)
+    expected_card_number = request.getfixturevalue(expected)
 
-    assert next(card_number) == "0000 0000 0011 1872"
-    assert next(card_number) == "0000 0000 0011 1873"
-    assert next(card_number) == "0000 0000 0011 1874"
-    assert next(card_number) == "0000 0000 0011 1875"
-    assert next(card_number) == "0000 0000 0011 1876"
+    assert next(card_number) == next(expected_card_number)
+    assert next(card_number) == next(expected_card_number)
+    assert next(card_number) == next(expected_card_number)
+    assert next(card_number) == next(expected_card_number)

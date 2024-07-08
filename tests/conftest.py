@@ -137,3 +137,13 @@ def account_transaction():
         }
     ]
 )
+
+
+@pytest.fixture
+def card_numbers_1():
+    return (x for x in ['0000 0000 0000 0001', '0000 0000 0000 0002', '0000 0000 0000 0003', '0000 0000 0000 0004'])
+
+
+@pytest.fixture
+def card_numbers_2():
+    return (x for x in ['0000 0000 0011 1872', '0000 0000 0011 1873', '0000 0000 0011 1874', '0000 0000 0011 1875'])

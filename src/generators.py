@@ -1,4 +1,7 @@
-def filter_by_currency(my_list, my_code="USD"):
+from typing import Any, Generator
+
+
+def filter_by_currency(my_list: list[dict[Any, Any]], my_code: str = "USD") -> Generator[Any, Any, Any]:
     """
     Функция, возвращающая итератор, который поочередно выдает транзакции,
     где валюта операции соответствует заданной
@@ -7,13 +10,13 @@ def filter_by_currency(my_list, my_code="USD"):
         yield x
 
 
-def transaction_descriptions(my_list):
+def transaction_descriptions(my_list: list[dict[Any, Any]]) -> Generator[Any, Any, Any]:
     """Функция, анализирующая информацию о транзакциях и возвращающая описание каждой операции по очереди"""
     for x in (dict_elem["description"] for dict_elem in my_list):
         yield x
 
 
-def card_number_generator(start, stop):
+def card_number_generator(start: int, stop: int) -> Generator[Any, Any, Any]:
     """Функция, генерирующая номер банковской карты в соответствии с начальным и конечным значением диапазона"""
     count, card_num = start, start
     while count <= stop:
