@@ -25,7 +25,7 @@ def test_log_console_print_no_exception(capsys):
         return x + y
     my_function(2, 3)
     captured = capsys.readouterr()
-    assert captured.out == "my_function ok\n"
+    assert captured.out == "my_function ok, function work time = 0.0\n"
 
 
 def test_log_file_write():
