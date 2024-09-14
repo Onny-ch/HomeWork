@@ -1,6 +1,7 @@
-from src.utils import financial_transactions_data, get_transactions_amount
-from src.external_api import currency_conversion
 from unittest.mock import patch
+
+from src.external_api import currency_conversion
+from src.utils import financial_transactions_data, get_transactions_amount
 
 
 def test_financial_transactions_data_false_path():
