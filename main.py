@@ -2,6 +2,8 @@ from src.generators import card_number_generator, filter_by_currency, transactio
 from src.masks import get_mask_account, get_mask_card_number
 from src.processing import filter_by_state, sort_by_date
 from src.widget import get_data, mask_account_card
+from src.utils import financial_transactions_data, get_transactions_amount
+
 
 test_list_of_dict = [
     {"id": "41428829", "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
@@ -58,8 +60,25 @@ transactions = [
     },
 ]
 
+trans = {
+    "id": 41428829,
+    "state": "EXECUTED",
+    "date": "2019-07-03T18:35:29.512364",
+    "operationAmount": {
+      "amount": "8221.37",
+      "currency": {
+        "name": "USD",
+        "code": "USD"
+      }
+    },
+    "description": "Перевод организации",
+    "from": "MasterCard 7158300734726758",
+    "to": "Счет 35383033474447895560"
+  }
 
 if __name__ == "__main__":
+    print(get_transactions_amount(trans))
+    # print(financial_transactions_data('data/operations.json'))
     print(get_mask_card_number("7000792289606361"))
 
     print(get_mask_account("73654108430135874305"))
