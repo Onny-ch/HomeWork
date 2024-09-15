@@ -78,35 +78,35 @@ trans = {
 
 if __name__ == "__main__":
     print(get_transactions_amount(trans))
-    # print(financial_transactions_data('data/operations.json'))
+    print(financial_transactions_data('data/operations.json'))
     print(get_mask_card_number("7000792289606361"))
 
     print(get_mask_account("73654108430135874305"))
 
-    print(get_data("2018-07-11T02:26:18.671407"))
-
-    print(mask_account_card("Maestro 1596837868705199".strip()))
-    print(mask_account_card("Счет 64686473678894779589".strip()))
-    print(mask_account_card("MasterCard 7158300734726758".strip()))
-    print(mask_account_card("Счет 35383033474447895560".strip()))
-    print(mask_account_card("Visa Classic 6831982476737658".strip()))
-    print(mask_account_card("Visa Platinum 8990922113665229".strip()))
-    print(mask_account_card("Visa Gold 5999414228426353".strip()))
-    print(mask_account_card("Счет 73654108430135874305".strip()))
-
-    print(filter_by_state(test_list_of_dict, "EXECUTED"))
-    print(filter_by_state(test_list_of_dict, "CANCELED"))
-
-    print(sort_by_date(test_list_of_dict, False))
-    print(sort_by_date(test_list_of_dict, True))
-
-    usd_transactions = filter_by_currency(transactions, "USD")
-    for _ in range(2):
-        print(next(usd_transactions))
-
-    descriptions = transaction_descriptions(transactions)
-    for _ in range(5):
-        print(next(descriptions))
-
-    for card_number in card_number_generator(1, 5):
-        print(card_number)
+    # print(get_data("2018-07-11T02:26:18.671407"))
+    #
+    # print(mask_account_card("Maestro 1596837868705199".strip()))
+    # print(mask_account_card("Счет 64686473678894779589".strip()))
+    # print(mask_account_card("MasterCard 7158300734726758".strip()))
+    # print(mask_account_card("Счет 35383033474447895560".strip()))
+    # print(mask_account_card("Visa Classic 6831982476737658".strip()))
+    # print(mask_account_card("Visa Platinum 8990922113665229".strip()))
+    # print(mask_account_card("Visa Gold 5999414228426353".strip()))
+    # print(mask_account_card("Счет 73654108430135874305".strip()))
+    #
+    # print(filter_by_state(test_list_of_dict, "EXECUTED"))
+    # print(filter_by_state(test_list_of_dict, "CANCELED"))
+    #
+    # print(sort_by_date(test_list_of_dict, False))
+    # print(sort_by_date(test_list_of_dict, True))
+    #
+    # usd_transactions = filter_by_currency(transactions, "USD")
+    # for _ in range(2):
+    #     print(next(usd_transactions))
+    #
+    # descriptions = transaction_descriptions(transactions)
+    # for _ in range(5):
+    #     print(next(descriptions))
+    #
+    # for card_number in card_number_generator(1, 5):
+    #     print(card_number)
