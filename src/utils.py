@@ -25,12 +25,3 @@ def get_transactions_amount(transaction: dict[Any, Any]) -> float:
         return amount
     amount = float(transaction["operationAmount"]["amount"])
     return amount
-
-
-# Реализуйте функцию, которая принимает на вход транзакцию и возвращает сумму транзакции (amount) в рублях,
-# тип данных — float. Если транзакция была в USD или EUR, происходит обращение к внешнему API для получения текущего
-# курса валют и конвертации суммы операции в рубли. Для конвертации валюты воспользуйтесь
-# Exchange Rates Data API: https://apilayer.com/exchangerates_data-api.
-# Функцию конвертации поместите в модульexternal_api.Используйте переменные окружения из файла.env для
-# сокрытия чувствительных данных (токенов доступа для API). Создайте шаблон файла.env и разместите в репозитории
-# на GitHub.Напишите тесты для новых функций, используйте Mock и patch.

@@ -1,11 +1,22 @@
-from unittest.mock import patch
+import json
+from unittest.mock import Mock, patch
 
-from src.external_api import currency_conversion
 from src.utils import financial_transactions_data, get_transactions_amount
 
 
 def test_financial_transactions_data_false_path():
     assert financial_transactions_data('data/operati.json') == []
+
+
+@patch('json.load')
+def test_financial_transactions_data_not_list(mock_data):
+    mock_data.return_value = {}
+    assert financial_transactions_data('data/operations.json') == []
+
+
+def test_financial_transactions_data_file_empty():
+    json.load = Mock(return_value=[])
+    assert financial_transactions_data('data/operations.json') == []
 
 
 def test_get_transactions_amount_rub_currency():
@@ -27,7 +38,7 @@ def test_get_transactions_amount_rub_currency():
     assert get_transactions_amount(trans) == 31957.58
 
 
-# @patch('currency_conversion')
+# @patch('currency_conversion()')
 # def test_get_transactions_amount_other_currency(mock_convert):
 #     trans = {
 #       "id": 41428829,
@@ -44,5 +55,5 @@ def test_get_transactions_amount_rub_currency():
 #       "from": "MasterCard 7158300734726758",
 #       "to": "Счет 35383033474447895560"
 #     }
-#     mock_convert.return_value = 745206.483902
-#     assert get_transactions_amount(trans) == 745206.483902
+#     mock_convert.return_value = 739923.30
+#     assert get_transactions_amount(trans) == 739923.30
