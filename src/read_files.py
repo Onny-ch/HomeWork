@@ -16,8 +16,3 @@ def read_xls(xsl_file: Any) -> str:
 
     transactions_dict = df.to_json(orient="records", indent=4)
     return transactions_dict
-
-
-if __name__ == "__main__":
-    print(read_csv('data\\transactions.csv'))
-    print(read_xls('data\\transactions_excel.xlsx'))
