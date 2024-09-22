@@ -3,7 +3,7 @@ from typing import Any
 import pandas as pd
 
 
-def read_csv(csv_file: Any) -> str:
+def read_csv(csv_file: Any) -> Any:
     """Функция считывания финансовых операций из CSV файла"""
     df = pd.read_csv(csv_file, delimiter=";")
 
@@ -11,7 +11,7 @@ def read_csv(csv_file: Any) -> str:
     return transactions_dict
 
 
-def read_xls(xsl_file: Any) -> str:
+def read_xls(xsl_file: Any) -> Any:
     """Функция считывания финансовых операций из Excel файла"""
     df = pd.read_excel(xsl_file)
 
