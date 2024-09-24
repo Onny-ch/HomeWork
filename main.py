@@ -1,6 +1,7 @@
 from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 from src.masks import get_mask_account, get_mask_card_number
 from src.processing import filter_by_state, sort_by_date
+from src.utils import financial_transactions_data, get_transactions_amount
 from src.widget import get_data, mask_account_card
 
 test_list_of_dict = [
@@ -58,20 +59,25 @@ transactions = [
     },
 ]
 
+trans = {
+    "id": 41428829,
+    "state": "EXECUTED",
+    "date": "2019-07-03T18:35:29.512364",
+    "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
+    "description": "Перевод организации",
+    "from": "MasterCard 7158300734726758",
+    "to": "Счет 35383033474447895560",
+}
 
 if __name__ == "__main__":
+    print(get_transactions_amount(trans))
+    print(financial_transactions_data("data/operations.json"))
+
     print(get_mask_card_number("7000792289606361"))
-
     print(get_mask_account("73654108430135874305"))
-
     print(get_data("2018-07-11T02:26:18.671407"))
 
     print(mask_account_card("Maestro 1596837868705199".strip()))
-    print(mask_account_card("Счет 64686473678894779589".strip()))
-    print(mask_account_card("MasterCard 7158300734726758".strip()))
-    print(mask_account_card("Счет 35383033474447895560".strip()))
-    print(mask_account_card("Visa Classic 6831982476737658".strip()))
-    print(mask_account_card("Visa Platinum 8990922113665229".strip()))
     print(mask_account_card("Visa Gold 5999414228426353".strip()))
     print(mask_account_card("Счет 73654108430135874305".strip()))
 
