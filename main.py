@@ -71,7 +71,8 @@ trans = {
 
 if __name__ == "__main__":
     print(get_transactions_amount(trans))
-    print(financial_transactions_data("data/operations.json"))
+
+    print(financial_transactions_data('data/operations.json'))
 
     print(get_mask_card_number("7000792289606361"))
     print(get_mask_account("73654108430135874305"))
