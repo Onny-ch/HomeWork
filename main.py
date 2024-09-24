@@ -1,6 +1,7 @@
 from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 from src.masks import get_mask_account, get_mask_card_number
 from src.processing import filter_by_state, sort_by_date
+from src.read_files import read_csv, read_xls
 from src.utils import financial_transactions_data, get_transactions_amount
 from src.widget import get_data, mask_account_card
 
@@ -98,3 +99,6 @@ if __name__ == "__main__":
 
     for card_number in card_number_generator(1, 5):
         print(card_number)
+
+    print(read_csv("data\\transactions.csv"))
+    print(read_xls("data\\transactions_excel.xlsx"))
