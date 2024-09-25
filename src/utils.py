@@ -2,6 +2,7 @@ import json
 import logging
 import os.path
 import re
+from collections import Counter
 from typing import Any
 
 from src.external_api import currency_conversion
@@ -54,3 +55,29 @@ def search_in_transactions(list_of_trans_dicts: list[dict[Any, Any]], search_str
         if "description" in el and re.search(search_string, el["description"], flags=re.IGNORECASE)
     ]
     return findall_trans_list
+
+
+### Как из генератора получать итемы, чтобы добавлять их в список?
+def count_descriptions(
+        list_of_trans_dicts: list[dict[Any, Any]],
+        list_of_operation_categories: list[str]
+) -> dict[str, int]:
+    """Функция считающая количество операций определенных категорий"""
+    list_with_descriptions = []
+
+    for description in list_of_operation_categories:
+        for el in search_in_transactions(list_of_trans_dicts, description):
+            list_with_descriptions.append(el)
+
+    final_list = [el['description'] for el in list_with_descriptions if 'description' in el]
+    counted_list = Counter(final_list)
+
+    return counted_list
+
+### Как правильно оформить перенос?
+# def count_descriptions(list_of_trans_dicts: list[dict[Any, Any]],
+#                        list_of_operation_categories: list[str]) -> dict[str, int]:
+#     list_of_descriptions = [el['description'] for el in list_of_trans_dicts if 'description' in el]
+#     counted_list = Counter(list_of_descriptions)
+#
+#     return counted_list
