@@ -2,7 +2,7 @@ from src.generators import card_number_generator, filter_by_currency, transactio
 from src.masks import get_mask_account, get_mask_card_number
 from src.processing import filter_by_state, sort_by_date
 from src.read_files import read_csv, read_xls
-from src.utils import financial_transactions_data, get_transactions_amount
+from src.utils import financial_transactions_data, get_transactions_amount, search_in_transactions
 from src.widget import get_data, mask_account_card
 
 test_list_of_dict = [
@@ -71,34 +71,36 @@ trans = {
 }
 
 if __name__ == "__main__":
-    print(get_transactions_amount(trans))
-
-    print(financial_transactions_data('data/operations.json'))
-
-    print(get_mask_card_number("7000792289606361"))
-    print(get_mask_account("73654108430135874305"))
-    print(get_data("2018-07-11T02:26:18.671407"))
-
-    print(mask_account_card("Maestro 1596837868705199".strip()))
-    print(mask_account_card("Visa Gold 5999414228426353".strip()))
-    print(mask_account_card("Счет 73654108430135874305".strip()))
-
-    print(filter_by_state(test_list_of_dict, "EXECUTED"))
-    print(filter_by_state(test_list_of_dict, "CANCELED"))
-
-    print(sort_by_date(test_list_of_dict, False))
-    print(sort_by_date(test_list_of_dict, True))
-
-    usd_transactions = filter_by_currency(transactions, "USD")
-    for _ in range(2):
-        print(next(usd_transactions))
-
-    descriptions = transaction_descriptions(transactions)
-    for _ in range(5):
-        print(next(descriptions))
-
-    for card_number in card_number_generator(1, 5):
-        print(card_number)
-
-    print(read_csv("data\\transactions.csv"))
-    print(read_xls("data\\transactions_excel.xlsx"))
+    pass
+    # print(search_in_transactions(financial_transactions_data("data\\operations.json"), 'ОТКРЫТИЕ'))
+    # print(get_transactions_amount(trans))
+    #
+    # print(financial_transactions_data('data/operations.json'))
+    #
+    # print(get_mask_card_number("7000792289606361"))
+    # print(get_mask_account("73654108430135874305"))
+    # print(get_data("2018-07-11T02:26:18.671407"))
+    #
+    # print(mask_account_card("Maestro 1596837868705199".strip()))
+    # print(mask_account_card("Visa Gold 5999414228426353".strip()))
+    # print(mask_account_card("Счет 73654108430135874305".strip()))
+    #
+    # print(filter_by_state(test_list_of_dict, "EXECUTED"))
+    # print(filter_by_state(test_list_of_dict, "CANCELED"))
+    #
+    # print(sort_by_date(test_list_of_dict, False))
+    # print(sort_by_date(test_list_of_dict, True))
+    #
+    # usd_transactions = filter_by_currency(transactions, "USD")
+    # for _ in range(2):
+    #     print(next(usd_transactions))
+    #
+    # descriptions = transaction_descriptions(transactions)
+    # for _ in range(5):
+    #     print(next(descriptions))
+    #
+    # for card_number in card_number_generator(1, 5):
+    #     print(card_number)
+    #
+    # print(read_csv("data\\transactions.csv"))
+    # print(read_xls("data\\transactions_excel.xlsx"))
