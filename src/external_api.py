@@ -16,5 +16,5 @@ def currency_conversion(currency_code: str, amount: str) -> float:
     request_data = requests.get(url=url, params=params, headers=headers).text
 
     pos = request_data.index("result")
-    converted_amount = float(request_data[pos + 9: -2])
+    converted_amount = float(request_data[pos + 9 : -2])
     return converted_amount

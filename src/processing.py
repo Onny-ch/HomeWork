@@ -1,6 +1,6 @@
 def filter_by_state(my_list: list[dict[str, str]], state_value: str = "EXECUTED") -> list[dict[str, str]]:
     """Фильтрует список словарей по ключу 'state'"""
-    state_filtered_list = [elem for elem in my_list if 'state' in elem and elem['state'] == state_value]
+    state_filtered_list = [elem for elem in my_list if "state" in elem and elem["state"] == state_value]
     return state_filtered_list
 
 

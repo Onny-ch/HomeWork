@@ -6,10 +6,10 @@ def filter_by_currency(my_list: list[dict[Any, Any]], my_code: str = "RUB") -> l
     list_trans = [
         dict_elem
         for dict_elem in my_list
-        if 'operationAmount' in dict_elem and
-        'currency' in dict_elem['operationAmount'] and
-        'code' in dict_elem['operationAmount']['currency'] and
-        dict_elem['operationAmount']['currency']['code'] == my_code
+        if "operationAmount" in dict_elem
+        and "currency" in dict_elem["operationAmount"]
+        and "code" in dict_elem["operationAmount"]["currency"]
+        and dict_elem["operationAmount"]["currency"]["code"] == my_code
     ]
     return list_trans
 

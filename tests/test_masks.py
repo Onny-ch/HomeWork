@@ -16,6 +16,10 @@ def test_get_mask_card_number(card_number, expected_result, request):
     assert get_mask_card_number(card_string) == expected_result
 
 
+def test_get_mask_card_number_error():
+    assert get_mask_card_number("54368764321425364375648") == ""
+
+
 @pytest.mark.parametrize(
     "account_number, expected_result",
     [("account_string_first", "**4305"), ("account_string_second", "**9589"), ("account_string_third", "**5560")],
@@ -23,3 +27,7 @@ def test_get_mask_card_number(card_number, expected_result, request):
 def test_get_mask_account(account_number, expected_result, request):
     account_string = request.getfixturevalue(account_number)
     assert get_mask_account(account_string) == expected_result
+
+
+def test_get_mask_account_error():
+    assert get_mask_account("") == ""

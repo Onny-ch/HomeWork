@@ -10,20 +10,20 @@ logger.setLevel(logging.INFO)
 
 def get_mask_card_number(card_name: str) -> str:
     """Функция, маскирующая номер карты"""
-    try:
-        logger.info("Маскируем номер карты")
+    if 13 <= len(card_name) <= 19:
+        logger.info("Маскируем номер карты.")
         return f"{card_name[:4]} {card_name[4:6]}** **** {card_name[-4:]}"
-    except Exception as ex:
-        logging.error(f"произошла ошибка {ex}")
+    else:
+        logging.error("Неверный формат карты.")
         return ""
 
 
 def get_mask_account(account_name: str) -> str:
     """Функция, маскирующая номер банковского аккаунта"""
-    try:
-        logger.info("Маскируем номер банковского аккаунта")
+    if len(account_name) == 20:
+        logger.info("Маскируем номер банковского аккаунта.")
         masc_account = "**" + account_name[-4:]
         return masc_account
-    except Exception as ex:
-        logging.error(f"Произошла ошибка {ex}")
+    else:
+        logging.error("Неверно указан номер банковского аккаунта.")
         return ""
