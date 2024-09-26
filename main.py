@@ -1,7 +1,7 @@
 from src.generators import filter_by_currency
 from src.processing import filter_by_state, sort_by_date
 from src.read_files import read_csv, read_xls
-from src.utils import financial_transactions_data, get_transactions_amount, search_in_transactions
+from src.utils import financial_transactions_data, search_in_transactions
 
 if __name__ == "__main__":
     menu_items = ["JSON", "CSV", "XLSX"]
@@ -74,18 +74,6 @@ if __name__ == "__main__":
 Всего банковских операций в выборке: {len(user_trans_data)}\n"""
         )
         print(user_trans_data)
+        print(type(user_trans_data))
     else:
         print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации.")
-    print(
-        get_transactions_amount(
-            {
-                "id": 939719570,
-                "state": "EXECUTED",
-                "date": "2018-06-30T02:08:58.425572",
-                "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
-                "description": "Перевод организации",
-                "from": "Счет 75106830613657916952",
-                "to": "Счет 11776614605963066702",
-            }
-        )
-    )
