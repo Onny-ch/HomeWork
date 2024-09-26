@@ -16,7 +16,7 @@ logger.setLevel(logging.INFO)
 
 
 def financial_transactions_data(json_file_path: str) -> list[Any]:
-    """Получение списка транзакций их файла"""
+    """Получение списка транзакций из файла"""
     try:
         logger.info(f"Получение списка транзакций из файла {json_file_path}")
         if os.path.exists(json_file_path) is False:
@@ -48,7 +48,7 @@ def get_transactions_amount(transaction: dict[Any, Any]) -> float:
 
 
 def search_in_transactions(list_of_trans_dicts: list[dict[Any, Any]], search_string: str) -> list[dict[Any, Any]]:
-    """Функция, которая ищет данные в списке словарей с данными транзакций по строке поиска"""
+    """Функция, которая ищет в списке словарей транзакции, соответствующие строке поиска"""
     findall_trans_list = [
         el
         for el in list_of_trans_dicts
@@ -59,8 +59,7 @@ def search_in_transactions(list_of_trans_dicts: list[dict[Any, Any]], search_str
 
 ### Как из генератора получать итемы, чтобы добавлять их в список?
 def count_descriptions(
-        list_of_trans_dicts: list[dict[Any, Any]],
-        list_of_operation_categories: list[str]
+    list_of_trans_dicts: list[dict[Any, Any]], list_of_operation_categories: list[str]
 ) -> dict[str, int]:
     """Функция считающая количество операций определенных категорий"""
     list_with_descriptions = []
@@ -69,10 +68,11 @@ def count_descriptions(
         for el in search_in_transactions(list_of_trans_dicts, description):
             list_with_descriptions.append(el)
 
-    final_list = [el['description'] for el in list_with_descriptions if 'description' in el]
+    final_list = [el["description"] for el in list_with_descriptions if "description" in el]
     counted_list = Counter(final_list)
 
     return counted_list
+
 
 ### Как правильно оформить перенос?
 # def count_descriptions(list_of_trans_dicts: list[dict[Any, Any]],

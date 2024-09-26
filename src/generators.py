@@ -1,13 +1,17 @@
 from typing import Any, Generator
 
 
-def filter_by_currency(my_list: list[dict[Any, Any]], my_code: str = "USD") -> Generator[Any, Any, Any]:
-    """
-    Функция, возвращающая итератор, который поочередно выдает транзакции,
-    где валюта операции соответствует заданной
-    """
-    for x in (dict_elem for dict_elem in my_list if dict_elem["operationAmount"]["currency"]["code"] == my_code):
-        yield x
+def filter_by_currency(my_list: list[dict[Any, Any]], my_code: str = "RUB") -> list[dict[Any, Any]]:
+    """Функция, возвращающая транзакции указанной валюты"""
+    list_trans = [
+        dict_elem
+        for dict_elem in my_list
+        if 'operationAmount' in dict_elem and
+        'currency' in dict_elem['operationAmount'] and
+        'code' in dict_elem['operationAmount']['currency'] and
+        dict_elem['operationAmount']['currency']['code'] == my_code
+    ]
+    return list_trans
 
 
 def transaction_descriptions(my_list: list[dict[Any, Any]]) -> Generator[Any, Any, Any]:
